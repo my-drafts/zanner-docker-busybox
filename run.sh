@@ -13,4 +13,3 @@ docker  run  \
 echo ""
 echo ""
 docker  ps  -as
-

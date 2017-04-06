@@ -1,10 +1,11 @@
 #!/bin/sh
 
-docker images -a
-echo ""
+echo "docker images:"
+docker images
+echo "---\n"
 docker  build  \
   --tag="zanner/busybox":latest  \
   .
-echo ""
-echo ""
-docker images -a
+echo "---\ndocker images:"
+docker images
+echo "---\n"
