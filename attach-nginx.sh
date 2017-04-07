@@ -2,4 +2,4 @@
 
 docker  ps  -as
 echo ""
-docker  attach  bb
+docker  attach  bb-nginx
