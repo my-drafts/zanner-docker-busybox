@@ -9,6 +9,7 @@ echo "---\n"
 docker  run  \
   --detach  \
   --env ENTRYPOINT_ENABLE="dropbear htop vim"  \
+  --hostname=localhost  \
   --interactive=true  \
   --name=bb  \
   --publish=22001:22  \
@@ -23,3 +24,7 @@ docker  run  \
 
 echo "---\n"
 docker  ps --all=true --filter "ancestor=zanner/busybox"
+
+docker attach bb
+
+

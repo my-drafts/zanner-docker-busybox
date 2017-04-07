@@ -9,6 +9,7 @@
 docker  run  \
   --detach  \
   --env ENTRYPOINT_ENABLE="dropbear htop nginx vim"  \
+  --hostname=localhost  \
   --interactive=true  \
   --name=bb-nginx  \
   --publish=22002:22  \
@@ -23,3 +24,7 @@ docker  run  \
 
 echo "---\n"
 docker  ps --all=true --filter "ancestor=zanner/busybox"
+
+docker attach bb-nginx
+
+

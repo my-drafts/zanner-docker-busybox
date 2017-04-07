@@ -9,6 +9,7 @@
 docker  run  \
   --detach  \
   --env ENTRYPOINT_ENABLE="dropbear git htop node vim"  \
+  --hostname=localhost  \
   --interactive=true  \
   --name=bb-node  \
   --publish=22003:22  \
@@ -23,3 +24,7 @@ docker  run  \
 
 echo "---\n"
 docker  ps --all=true --filter "ancestor=zanner/busybox"
+
+docker attach bb-node
+
+
