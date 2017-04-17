@@ -11,7 +11,7 @@ docker  run  \
   --name=${container_name}  \
   --restart=always  \
   --tty=true  \
-  --volume=/docker/busybox/data/:/data  \
+  --volume=/docker/${container_name}/data/:/data  \
   zanner/busybox:latest
 
 #  --attach="STDOUT"  \
@@ -24,6 +24,4 @@ echo ""
 echo ""
 docker  ps --all=true --filter "ancestor=zanner/busybox"
 
-#docker attach bb
-
-
+#docker attach ${container_name}

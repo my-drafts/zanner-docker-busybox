@@ -1,30 +1,28 @@
 #!/bin/sh
 
-#echo "docker container's zanner/busybox:"
-#docker  ps --all=true --filter "ancestor=zanner/busybox"
-#echo "---\n"
-#docker  rm -f $(docker  ps -a -f "ancestor=zanner/busybox" -q) 2>/dev/null
-#echo "---\n"
+./delete-containers.sh
 
+read -p "Container name: " container_name
 docker  run  \
   --detach  \
-  --env ENTRYPOINT_INIT="dropbear htop nginx vim"  \
+  --env ENTRYPOINT_INIT="alias htop nginx vim"  \
   --hostname=localhost  \
   --interactive=true  \
-  --name=bb-nginx  \
-  --publish=22002:22  \
-  --publish=8002:80  \
-  --publish-all=true  \
+  --name=${container_name}  \
+  --publish=80:80  \
   --restart=always  \
   --tty=true  \
-  --volume=/docker/busybox/data/:/data  \
+  --volume=/docker/${container_name}/data/:/data  \
   zanner/busybox:latest
 
+#  --attach="STDOUT"  \
+#  --detach  \
 #  --env ENTRYPOINT_INIT="alias dropbear git htop nginx node ntpclient vim"  \
+#  --publish=22:22  \
+#  --publish=80:80  \
 
-echo "---\n"
+echo ""
+echo ""
 docker  ps --all=true --filter "ancestor=zanner/busybox"
 
-docker attach bb-nginx
-
-
+#docker attach ${container_name}
