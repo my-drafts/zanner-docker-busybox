@@ -1,7 +1,7 @@
 #!/bin/sh
 
-echo "init git";
 echo "";
+echo "init git";
 ## +?
 
 if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'git')" != 'git' ];

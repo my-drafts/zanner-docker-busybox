@@ -1,0 +1,33 @@
+#
+#/etc/config/dropbear
+#https://wiki.openwrt.org/doc/uci/dropbear
+#
+#Name                   Type    Required Default Description
+#enable                 boolean no       1       Set to 0 to disable starting dropbear at system boot.
+#verbose                boolean no       0       Set to 1 to enable verbose output by the start script.
+#BannerFile             string  no       (none)  Name of a file to be printed before the user has authenticated successfully.
+#PasswordAuth           boolean no       1       Set to 0 to disable authenticating with passwords.
+#Port                   integer no       22      Port number to listen on.
+#RootPasswordAuth       boolean no       1       Set to 0 to disable authenticating as root with passwords.
+#RootLogin              boolean no       1       Set to 0 to disable SSH logins as root.
+#GatewayPorts           boolean no       0       Set to 1 to allow remote hosts to connect to forwarded ports.
+#Interface              string  no       (none)  Tells dropbear to listen only on the specified interface.1)
+#rsakeyfile             file    no       (none)  Path to RSA file
+#dsskeyfile             file    no       (none)  Path to DSS/DSA file
+#SSHKeepAlive           integer no       300     Keep Alive
+#IdleTimeout            integer no       0       Idle Timeout
+
+
+
+config dropbear
+	option BannerFile       '/etc/banner'
+	option Port             '22'
+	option PasswordAuth     'on'
+	option RootPasswordAuth 'off'
+	option RootLogin        'off'
+	option rsakeyfile       '/etc/dropbear/
+	option IdleTimeout      600
+
+
+
+

@@ -1,13 +1,13 @@
 #!/bin/sh
 
-echo "init nginx";
 echo "";
+echo "init nginx";
 ## +2 mb
 
 if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'nginx')" != 'nginx' ];
 then
 	## add user for nginx
-	adduser -s /bin/false -D nginx nginx
+	adduser -D -H -s /bin/false nginx nginx
 
 	## install nginx is not installed
 	opkg update
@@ -29,4 +29,7 @@ then
 	cp -R -f /docker/etc/nginx/default /data/nginx/
 fi
 
-/docker/etc/nginx/nginx-watcher.sh &
+## start nginx web server
+if [ -f /docker/etc/nginx/nginx-watcher.sh ]; then
+	/docker/etc/nginx/nginx-watcher.sh &
+fi

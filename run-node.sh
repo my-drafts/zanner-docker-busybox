@@ -8,7 +8,7 @@
 
 docker  run  \
   --detach  \
-  --env ENTRYPOINT_ENABLE="dropbear git htop node vim"  \
+  --env ENTRYPOINT_INIT="dropbear git htop node vim"  \
   --hostname=localhost  \
   --interactive=true  \
   --name=bb-node  \
@@ -20,7 +20,7 @@ docker  run  \
   --volume=/docker/busybox/data/:/data  \
   zanner/busybox:latest
 
-#  --env ENTRYPOINT_ENABLE="alias dropbear git htop nginx node ntpclient vim"  \
+#  --env ENTRYPOINT_INIT="alias dropbear git htop nginx node ntpclient vim"  \
 
 echo "---\n"
 docker  ps --all=true --filter "ancestor=zanner/busybox"
