@@ -4,8 +4,7 @@ echo "";
 echo "init node";
 ## +?
 
-if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'node')" != 'node' ];
-then
+if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'node')" != 'node' ]; then
 	## install node is not installed
 	opkg update
 	opkg install node
@@ -14,7 +13,7 @@ then
 	npm install -g http
 
 	## create dir for node apps
-	mkdir -p -m a+r,u+w /data/node/
+	mkdir -p -m 644 /data/node/
 fi
 
 ## start node from directory

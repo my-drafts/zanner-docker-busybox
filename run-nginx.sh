@@ -1,28 +1,21 @@
 #!/bin/sh
 
-./delete-containers.sh
+mkdir -p -m 755 data/
 
-read -p "Container name: " container_name
-docker  run  \
+name="nginx"
+
+docker run  \
   --detach  \
-  --env ENTRYPOINT_INIT="alias htop nginx vim"  \
-  --hostname=localhost  \
+  --env ENTRYPOINT="alias htop nginx vim"  \
+  --hostname="${name}"  \
   --interactive=true  \
-  --name=${container_name}  \
+  --name="${name}"  \
   --publish=80:80  \
   --restart=always  \
   --tty=true  \
-  --volume=/docker/${container_name}/data/:/data  \
+  --volume="${PWD}/data/:/data/"  \
   zanner/busybox:latest
 
-#  --attach="STDOUT"  \
-#  --detach  \
 #  --env ENTRYPOINT_INIT="alias dropbear git htop nginx node ntpclient vim"  \
 #  --publish=22:22  \
 #  --publish=80:80  \
-
-echo ""
-echo ""
-docker  ps --all=true --filter "ancestor=zanner/busybox"
-
-#docker attach ${container_name}

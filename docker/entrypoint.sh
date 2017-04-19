@@ -1,7 +1,12 @@
 #!/bin/sh
 
-if [ -f /docker/tmp/init.sh ]; then
-	/docker/tmp/init.sh
-fi
+init=" ${ENTRYPOINT} ";
+
+for path in /docker/entrypoint/*.sh; do
+	file=`basename ${path} .sh`;
+	if [ "${init}" != "${init/ $file / }" ]; then
+		/bin/sh ${path};
+	fi
+done
 
 /bin/sh

@@ -3,8 +3,9 @@
 echo "";
 echo "init alias";
 
-echo "alias ll='ls -als'" > /root/.profile
-echo "alias '..'='cd ..'" > /root/.profile
+touch /root/.profile
+echo "alias ll='ls -als'" >> /root/.profile
+echo "alias '..'='cd ..'" >> /root/.profile
 
 #export PS1="[\[\e[0;33m\]\u@\h\[\e[m\]] \[\e[1;35m\]\w\[\e[m\] \[\e[0;36m\]>\[\e[m\]"
 #export PS2=">"
