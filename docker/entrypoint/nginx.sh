@@ -28,6 +28,7 @@ if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'nginx')" != 'nginx' ]
 	## create nginx vhosts
 	rmdir /data/nginx 2>/dev/null
 	mv -f /docker/tmp/nginx /data
+	find /data/nginx -print | xargs chown docker:docker
 	find /data/nginx -type d -print | xargs chmod 755
 	find /data/nginx -type f -print | xargs chmod 644
 	find /data/nginx -type f -print | grep ".conf" | xargs chmod 644
