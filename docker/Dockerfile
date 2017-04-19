@@ -5,15 +5,15 @@ RUN  passwd -d root
 RUN  opkg-install opkg 2>/dev/null
 RUN  opkg update
 
-RUN  mkdir -p /docker/
-RUN  chmod 755 /docker/
+RUN  mkdir -p /docker
 ADD  entrypoint.sh /docker/entrypoint.sh
 ADD  entrypoint /docker/entrypoint
 ADD  tmp /docker/tmp
-RUN  chmod -R a+x /docker/*.sh
+RUN  find /docker -type d -print | xargs chmod 755
+RUN  find /docker -type f -print | xargs chmod 644
+RUN  find /docker -type f -print | grep ".sh" | xargs chmod a+x
 
-RUN  mkdir -p /data/
-RUN  chmod 755 /data/
+RUN  mkdir -p -m 755 /data
 VOLUME ["/data/"]
 
 ENTRYPOINT  ["/docker/entrypoint.sh"]

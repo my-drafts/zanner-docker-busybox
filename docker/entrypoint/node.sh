@@ -13,7 +13,11 @@ if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'node')" != 'node' ]; 
 	npm install -g http
 
 	## create dir for node apps
-	mkdir -p -m 644 /data/node/
+	rmdir /data/node 2>/dev/null
+	mv -f /docker/tmp/node /data
+	find /data/node -type d -print | xargs chmod 755
+	find /data/node -type f -print | xargs chmod 644
+	rmdir /docker/tmp/node 2>/dev/null
 fi
 
 ## start node from directory

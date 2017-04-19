@@ -10,7 +10,7 @@ docker run  \
   --hostname="${name}"  \
   --interactive=true  \
   --name="${name}"  \
-  --publish=80:80  \
+  --publish=8080:80  \
   --restart=always  \
   --tty=true  \
   --volume="${PWD}/data/:/data/"  \

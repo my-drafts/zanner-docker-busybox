@@ -13,22 +13,26 @@ if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'nginx')" != 'nginx' ]
 	opkg install nginx 2>/dev/null;
 
 	## create dir's for nginx
-	mkdir -p -m 644 /etc/nginx/ /var/log/nginx/ /var/lib/nginx/;
+	mkdir -p -m 755 /etc/nginx/ /var/log/nginx/ /var/lib/nginx/;
 
 	## nginx config
 	rm -f /etc/nginx/~nginx.conf;
 	mv -f /etc/nginx/nginx.conf /etc/nginx/~nginx.conf;
 	mv -f /docker/tmp/nginx/nginx.conf /etc/nginx/nginx.conf;
+	chmod 644 /etc/nginx/nginx.conf
 
 	## nginx-watcher
 	mv -f /docker/tmp/nginx/nginx-watcher.sh /bin/
-	chmod 755 /bin/nginx-watcher.sh
+	chmod 744 /bin/nginx-watcher.sh
 
 	## create nginx vhosts
-	mkdir -p -m 644 /data/nginx/
-	mv -R -f /docker/tmp/nginx/default /data/nginx/
-
-	rmdir /docker/tmp/nginx
+	rmdir /data/nginx 2>/dev/null
+	mv -f /docker/tmp/nginx /data
+	find /data/nginx -type d -print | xargs chmod 755
+	find /data/nginx -type f -print | xargs chmod 644
+	find /data/nginx -type f -print | grep ".conf" | xargs chmod 644
+	find /data/nginx -type f -print | grep ".log" | xargs chmod 666
+	rmdir /docker/tmp/nginx 2>/dev/null
 fi
 
 ## start nginx web server

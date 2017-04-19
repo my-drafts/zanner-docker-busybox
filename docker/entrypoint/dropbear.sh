@@ -14,6 +14,7 @@ if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'dropbear')" != 'dropb
 
 	## replace config
 	mv -f /docker/tmp/dropbear/dropbear /etc/config/dropbear
+	chmod 644 /etc/config/dropbear
 
 	## remove invalid keys: dropbear_rsa_host_key, etc
 	rm -f /etc/dropbear/*_key

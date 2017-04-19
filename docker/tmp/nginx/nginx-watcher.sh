@@ -23,6 +23,9 @@ nginx_test () {
 nginx_started=0
 while [ true ]; do
 	if [ -n $(nginx_test) ]; then
+		#chmod -h -R -L 755 /data/nginx/*
+		#chmod -h -R -L 644 /data/nginx/*.conf
+		#chmod -h -R -L 666 /data/nginx/*.log
 		nginx_pids=$(ps | grep -E 'nginx[\:]' | awk '{ print $1 }');
 		nginx_last=$(nginx_config_last);
 		diff=$(( ${nginx_last} - ${nginx_started} ));
