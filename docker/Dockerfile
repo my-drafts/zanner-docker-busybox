@@ -2,7 +2,7 @@ FROM  progrium/busybox:latest
 LABEL maintainer "Sergyi Kukharyev <sergej.kucharev@gmail.com>"
 
 RUN  passwd -d root
-RUN  adduser -s /bin/sh -d docker docker
+RUN  adduser -s /bin/sh -D docker docker
 RUN  opkg-install opkg 2>/dev/null
 RUN  opkg update
 
