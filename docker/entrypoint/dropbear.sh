@@ -13,6 +13,7 @@ if [ "$(opkg list-installed | awk '{ print $1}' | grep -E 'dropbear')" != 'dropb
 	adduser -D -H -s /bin/false dropbear dropbear;
 
 	## replace config
+	rm -f /etc/config/dropbear
 	mv -f /docker/tmp/dropbear/dropbear /etc/config/dropbear
 	chmod 644 /etc/config/dropbear
 

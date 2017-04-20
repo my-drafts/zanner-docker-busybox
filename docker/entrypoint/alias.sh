@@ -8,7 +8,7 @@ echo "alias ll='ls -als'" >> /root/.profile
 echo "alias '..'='cd ..'" >> /root/.profile
 
 touch /home/docker/.profile
-chown docker:docker /home/docker/.profile
+find /home/docker/.profile -print | chown docker:docker 
 echo "alias ll='ls -als'" >> /home/docker/.profile
 echo "alias '..'='cd ..'" >> /home/docker/.profile
 
